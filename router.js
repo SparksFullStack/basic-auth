@@ -1,5 +1,7 @@
+const AuthenticationController = require('./controllers/authentication_controller');
+
 module.exports = (app) => {
-    // when the user visits the '/' route, the callback function is run
-    // the callback receives three parameters: req, res, and next
-    app.get('/', (req, res, next) => res.send('cheesedick'));
+    // whenever a post is made to the /signup route, the signup function exported...
+    /// ...from authentication_controller will be executed as the callback
+    app.post('/signup', AuthenticationController.signup);
 }
