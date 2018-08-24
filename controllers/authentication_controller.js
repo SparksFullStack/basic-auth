@@ -20,7 +20,7 @@ exports.signup = (req, res, next) => {
             // if there was an error, pass it on
             if (err) return next(err);
             // if the user was saved successfully, we'll return the user
-            res.json(newUser);
+            res.json({ success: true });
         })
     })
 }
