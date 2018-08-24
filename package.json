@@ -1,0 +1,13 @@
+{
+  "name": "basic-auth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/SparksFullStack/basic-auth.git",
+  "author": "SparksFullStack <csparks@antioch.edu>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.2.9",
+    "morgan": "^1.9.0"
+  }
+}
