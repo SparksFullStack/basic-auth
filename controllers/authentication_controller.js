@@ -1,7 +1,22 @@
 // importing the User model class we created
 const UserModel = require('../models/user_model');
 
-// importing bcrypt
+// importing the JWT library as well as the config file
+const jwt = require('jwt-simple');
+const config = require('../config');
+
+// writing a function that takes our user's ID and encodes it with our secret from the config file
+// takes the user model as a parameter
+const tokenForUser = (user) => {
+    // creating a timestamp to place into the JWT
+    const timestamp = new Date().getTime();
+
+    // returning the result of the .encode() method off of the JWT-Simple library
+    // .encode takes in the information to encode (as an object), and the secret from our config file as parameters
+    // sub should be set equal to the property from the user that we're going to use for the JWT...
+    // ...we want to always use something permanent to set the JWT, so nothing like an email address that can change
+    return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
+}
 
 exports.signup = (req, res, next) => {
     // grabbing the email and password sent in the body of the request
@@ -24,8 +39,8 @@ exports.signup = (req, res, next) => {
         newUser.save((err) => {
             // if there was an error, pass it on
             if (err) return next(err);
-            // if the user was saved successfully, we'll return the user
-            res.json({ success: true });
+            // returning the result of calling our token method with the user passed in as the response to the client
+            res.json({ token: tokenForUser(newUser) });
         })
     })
 }

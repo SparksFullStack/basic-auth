@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // importing bcrypt to hash our passwords
-const bcrypt = require('bcrypt-nodejs')
+const bcrypt = require('bcrypt-nodejs');
 
 // Defining the model
 const userSchema = new Schema({
@@ -12,7 +12,7 @@ const userSchema = new Schema({
 });
 
 // on the save hook we're going to encrypt the password
-userSchema.pre('save', (next) => {
+userSchema.pre('save', function(next) {
     // this gets access to the User Model we're accessing here
     // here 'user' is an instance of the User Model
     const user = this;
