@@ -1,10 +1,15 @@
 // importing the User model class we created
 const UserModel = require('../models/user_model');
 
+// importing bcrypt
+
 exports.signup = (req, res, next) => {
     // grabbing the email and password sent in the body of the request
     const { email, password } = req.body;
-    
+
+    // returning an error if both email and password are not present
+    if (!email || !password) return res.status(422).send({ error: 'You must provided an email and a password' });
+
     // checking if the user with that email already exists by searching the database
     UserModel.findOne({ email: email }, (err, existingUser) => {
         // if there's an error, pass it on

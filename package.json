@@ -6,6 +6,7 @@
   "author": "SparksFullStack <csparks@antioch.edu>",
   "license": "MIT",
   "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
     "express": "^4.16.3",
     "mongoose": "^5.2.9",
     "morgan": "^1.9.0"
